@@ -3,12 +3,14 @@ const UserRoutes = express.Router()
 const UserController = require("../Controller/UserController")
 const userController = new UserController()
 
-UserRoutes.get("/users", userController.listar)
+UserRoutes.get("/v1/user", userController.listar)
 
-UserRoutes.post("/users", userController.criar)
+UserRoutes.get("/v1/user/:id", userController.listarId)
 
-UserRoutes.put("/users", userController.atualizar)
+UserRoutes.post("/v1/user", userController.criar)
 
-UserRoutes.delete("/users", userController.excluir)
+UserRoutes.put("/v1/user/:id", userController.atualizar)
+
+UserRoutes.delete("/v1/user/:id", userController.excluir)
 
 module.exports = UserRoutes
