@@ -9,6 +9,7 @@ const port = 3000
 
 const RotasPublicas = require("./Routes/RotasPublicas");
 const CategoriaRoutes = require("./Routes/CategoriasRoutes")
+const RotasPrivadas = require("./Routes/RotasPrivadas")
 
 app.get("/", (request, response)=>{
     return response.send("bem vindo!!!")
@@ -18,6 +19,7 @@ app.get("/", (request, response)=>{
 app.use(UserRoutes)
 app.use(RotasPublicas)
 app.use(CategoriaRoutes)
+app.use(RotasPrivadas)
 
 
 app.listen(port, host,()=>{

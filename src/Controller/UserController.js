@@ -5,15 +5,11 @@ class UserController{
 
     async validar(email, password){
         const usuario = await UserModel.findOne({ where: {email}  });
-
         if (!usuario) {
-            console.log('Usuário não encontrado.');
             return { sucesso: false, mensagem: 'E-mail ou senha inválidos.' };
         }
-
-        // Comparar a senha fornecida com o hash armazenado
+        
         const senhaCorreta = await bcrypt.compare(password, usuario.password);
-
         if (senhaCorreta) {
             return true;
         } else {

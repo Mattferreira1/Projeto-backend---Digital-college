@@ -23,7 +23,8 @@ ProdutosCategorias.init(
         references:{
             model:CategoriasModel,
             key: "id"
-        }
+        },
+        onDelete:"CASCADE"
     },
   },
   {
