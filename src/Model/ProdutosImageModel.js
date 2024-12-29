@@ -19,7 +19,8 @@ ProdutosImageModel.init(
         references:{
             model:ProdutosModel,
             key: "id"
-        }
+        },
+        onDelete:"CASCADE"
     },
     enabled:{
         type: DataTypes.BOOLEAN,
@@ -35,5 +36,7 @@ ProdutosImageModel.init(
     tableName: "Imagens_de_produtos",
     sequelize: connection, 
   },
-);
+);        
+
+
 module.exports = ProdutosImageModel

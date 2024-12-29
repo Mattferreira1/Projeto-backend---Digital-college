@@ -13,7 +13,7 @@ class UserController{
 
         // Comparar a senha fornecida com o hash armazenado
         const senhaCorreta = await bcrypt.compare(password, usuario.password);
-        console.log(senhaCorreta)
+
         if (senhaCorreta) {
             return true;
         } else {

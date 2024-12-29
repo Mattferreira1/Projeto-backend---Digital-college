@@ -9,7 +9,6 @@ ProdutosOpcoesModel.init(
   {
     id:{
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
@@ -20,7 +19,8 @@ ProdutosOpcoesModel.init(
         references:{
             model:ProdutosModel,
             key: "id"
-        }
+        },
+        onDelete:"CASCADE"
     },
     title:{
       type: DataTypes.STRING(255),
