@@ -12,6 +12,17 @@
 }
 ```
 
+- Validar jwt
+
+OBS: Optei por não colocar tempo para expirar na chave jwt para facilitar os testes. =)
+
+Em todas as rotas de Post, Put, Delete é necessário adicionar o cabeçalho "authorization" com o "Bearer" e a chave jwt em seguida.
+Exemplo:
+
+```
+"authorization" : "Bearer eyJhbGciOiJIUz....."
+```
+
 
 # Rotas usuário
 <details>

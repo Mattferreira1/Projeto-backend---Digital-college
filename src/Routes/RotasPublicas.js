@@ -28,17 +28,17 @@ RotasPublicas.post("/v1/user/token", async (request, response)=>{
 RotasPublicas.get("/v1/user", userController.listar)
 RotasPublicas.get("/v1/user/:id", userController.listarId)
 
-RotasPublicas.post("/v1/user", userController.criar)
-RotasPublicas.put("/v1/user/:id", userController.atualizar)
-RotasPublicas.delete("/v1/user/:id", userController.excluir)
+// RotasPublicas.post("/v1/user", userController.criar)
+// RotasPublicas.put("/v1/user/:id", userController.atualizar)
+// RotasPublicas.delete("/v1/user/:id", userController.excluir)
 
 
 
 RotasPublicas.get("/v1/product/search", produtosController.listar)
 RotasPublicas.get("/v1/product/:id", produtosController.listarId)
-RotasPublicas.post("/v1/product", produtosController.criar)
-RotasPublicas.put("/v1/product/:id", produtosController.atualizar)
-RotasPublicas.delete("/v1/product/:id", produtosController.excluir)
+// RotasPublicas.post("/v1/product", produtosController.criar)
+// RotasPublicas.put("/v1/product/:id", produtosController.atualizar)
+// RotasPublicas.delete("/v1/product/:id", produtosController.excluir)
 
 RotasPublicas.get("/v1/category/search", categoriasController.listar)
 RotasPublicas.post("/v1/category", categoriasController.criar)
