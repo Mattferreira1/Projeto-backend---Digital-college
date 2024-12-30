@@ -16,23 +16,26 @@ RotasPrivadas.use((request, response, next)=>{
     if(request.headers ){
         const {authorization} = request.headers
         const token = authorization && authorization.split(' ')[1]
+        // const authHeader = request.headers['authorization'];
+        // const token = authHeader && authHeader.split(' ')[1];
         console.log(token);
+        if(!token){
+            return response.status(400).json({
+                message: "Chave jwt ausente"
+            })
+        }
         try{
-            if(!token){
-                return response.status(400).json({
-                    message: "Chave jwt ausente"
-                })
-            }
             
             jwt.verify(token, process.env.KEY_TOKEN)
-            auth = true
             if(auth = false){
                 return response.status(401).json({
                     message: "token inválido"
                 })
+            }else{
+                auth = true
+                next()
             }
             
-            next()
         }catch(e){
             return response.status(403).send(e)
         }

@@ -42,8 +42,8 @@ RotasPublicas.get("/v1/product/:id", produtosController.listarId)
 // RotasPublicas.delete("/v1/product/:id", produtosController.excluir)
 
 RotasPublicas.get("/v1/category/search", categoriasController.listar)
-RotasPublicas.post("/v1/category", categoriasController.criar)
-RotasPublicas.put("/v1/category/:id", categoriasController.atualizar)
-RotasPublicas.delete("/v1/category/:id", categoriasController.excluir)
+// RotasPublicas.post("/v1/category", categoriasController.criar)
+// RotasPublicas.put("/v1/category/:id", categoriasController.atualizar)
+// RotasPublicas.delete("/v1/category/:id", categoriasController.excluir)
 
 module.exports = RotasPublicas
