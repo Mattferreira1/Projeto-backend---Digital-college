@@ -16,9 +16,9 @@ app.get("/", (request, response)=>{
 })
 
 
-app.use(UserRoutes)
+// app.use(UserRoutes)
 app.use(RotasPublicas)
-app.use(CategoriaRoutes)
+// app.use(CategoriaRoutes)
 app.use(RotasPrivadas)
 
 

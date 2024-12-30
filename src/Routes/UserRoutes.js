@@ -1,7 +1,7 @@
-const express = require("express")
-const UserRoutes = express.Router()
-const UserController = require("../Controller/UserController")
-const userController = new UserController()
+// const express = require("express")
+// const UserRoutes = express.Router()
+// const UserController = require("../Controller/UserController")
+// const userController = new UserController()
 
 // UserRoutes.get("/v1/user", userController.listar)
 
@@ -13,4 +13,4 @@ const userController = new UserController()
 
 // UserRoutes.delete("/v1/user/:id", userController.excluir)
 
-module.exports = UserRoutes
+// module.exports = UserRoutes

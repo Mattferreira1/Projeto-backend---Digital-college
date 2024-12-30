@@ -8,7 +8,7 @@ class CategoriaController{
         const body = request.body
         await CategoriasModel.create(body)
         return response.status(201).json({
-            "message":"Usuário adicionado com sucesso"
+            "message":"Categoria adicionada com sucesso"
         })
     }
 
@@ -27,7 +27,7 @@ class CategoriaController{
         }
         else if(!body){
             return response.status(400).json({
-                "message":"Não foi possível atualizar o usuário"
+                "message":"Não foi possível atualizar a Categoria"
             })
         }
         
@@ -37,12 +37,13 @@ class CategoriaController{
             }
         })
         return response.status(204).json({
-            message: "Usuário atualizado com sucesso"
+            message: "Categoria atualizada com sucesso"
         })
     }
 
     async excluir(request, response){
-        const id = request.params.id
+        try{
+            const id = request.params.id
         const user = await CategoriasModel.findOne({
             where:{
                 id: id
@@ -59,9 +60,12 @@ class CategoriaController{
             }
         })
         return response.status(204).json({
-            message: "Usuário deletado com sucesso"
+            message: "Categoria deletada com sucesso"
         })
+    }catch(e){
+        return response.json(e)
     }
+}   
 }
 
 module.exports = CategoriaController

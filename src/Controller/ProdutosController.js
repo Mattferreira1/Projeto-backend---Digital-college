@@ -47,54 +47,8 @@ class ProdutosController{
           } else {
             page = parseInt(request.query.page) || 1;
           }
-    
-          let fields = request.query.fields;
-          if (typeof fields === "string") {
-            fields = fields.split(",").map((field) => field.trim());
-          } else if (Array.isArray(fields)) {
-            fields = fields.map((field) => field.trim());
-          } else {
-            fields = [];
-          }
-    
-          const match = request.query.match ? request.query.match.trim() : "";
-    
-          let whereConditions = {};
-    
-          if (match) {
-            whereConditions[Sequelize.Op.or] = [
-              { name: { [Sequelize.Op.like]: `%${match}%` } },
-              { description: { [Sequelize.Op.like]: `%${match}%` } },
-            ];
-          }
-    
-          if (request.query["price-range"]) {
-            const [minPrice, maxPrice] = request.query["price-range"]
-              .split("-")
-              .map(Number);
-            if (minPrice && maxPrice) {
-              whereConditions.price = {
-                [Sequelize.Op.between]: [minPrice, maxPrice],
-              };
-            }
-          }
-    
-          if (request.query.option) {
-            for (const [key, value] of Object.entries(request.query.option)) {
-              whereConditions["$ProdutosOpcoesModels.id$"] = {
-                [Sequelize.Op.eq]: key,
-              };
-              whereConditions["$ProdutosOpcoesModels.values$"] = {
-                [Sequelize.Op.in]: value.split(","),
-              };
-            }
-          }
-    
           ProdutosModel.hasMany(ProdutosImageModel, { foreignKey: "product_id" });
-          ProdutosModel.belongsToMany(CategoriasModel, {
-            through: ProdutosCategorias,
-            foreignKey: "product_id",
-            otherKey: "category_id",
+          ProdutosModel.belongsToMany(CategoriasModel, {through: ProdutosCategorias,foreignKey: "product_id", otherKey: "category_id",
           });
           ProdutosModel.hasMany(ProdutosOpcoesModel, { foreignKey: "product_id" });
     
@@ -104,6 +58,7 @@ class ProdutosController{
                 {
                   model: CategoriasModel,
                   through: { attributes: [] },
+                  attributes: ["id"], 
                 },
                 {
                   model: ProdutosImageModel,
@@ -112,8 +67,6 @@ class ProdutosController{
                   model: ProdutosOpcoesModel,
                 },
               ],
-              attributes: fields,
-              where: whereConditions,
             });
           } else {
             const offset = (page - 1) * limit;
@@ -125,6 +78,7 @@ class ProdutosController{
                 {
                   model: CategoriasModel,
                   through: { attributes: [] },
+                  attributes: ["id"], 
                 },
                 {
                   model: ProdutosImageModel,
@@ -133,20 +87,10 @@ class ProdutosController{
                   model: ProdutosOpcoesModel,
                 },
               ],
-              attributes: fields,
-              where: whereConditions,
             });
-          }
-    
-          const totalItems = await ProdutosModel.count({
-            where: whereConditions,
-          });
-    
-          const totalPages = limit === -1 ? 1 : Math.ceil(totalItems / limit);
-    
+          } 
+
           return response.json({
-            totalItems,
-            totalPages: limit === -1 ? 1 : totalPages,
             currentPage: page,
             itemsPerPage: limit === -1 ? "Total" : limit,
             data: produtos,
@@ -172,9 +116,8 @@ class ProdutosController{
                     model: CategoriasModel
                 }
             });
-
-            product.setCategoriasModels(body.category_ids);
-
+            console.log(body.category_ids)
+            
             if (images && images.length > 0) {
                 const imageData = images.map((image) => ({
                     type: image.type,
@@ -194,11 +137,11 @@ class ProdutosController{
                     values: JSON.stringify(option.values),
                     product_id: product.id,
                 }));
-                console.log(options);
                 
                 await ProdutosOpcoesModel.bulkCreate(optionsData);
             }
-
+            product.setCategoriasModels(body.category_ids);
+            
             return response.status(201).json({
                 message:"Produto adicionado com sucesso"
             });
@@ -226,7 +169,7 @@ class ProdutosController{
         }
         else if(!body){
             return response.status(400).json({
-                "message":"Não foi possível atualizar o usuário"
+                "message":"Não foi possível atualizar o Produto"
             })
         }
         
@@ -236,7 +179,7 @@ class ProdutosController{
             }
         })
         return response.status(204).json({
-            message: "Usuário atualizado com sucesso"
+            message: "Produto atualizado com sucesso"
         })
     }
 
@@ -258,7 +201,7 @@ class ProdutosController{
             }
         })
         return response.status(204).json({
-            message: "Usuário deletado com sucesso"
+            message: "Produto deletado com sucesso"
         })
     }
 }
