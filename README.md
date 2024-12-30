@@ -31,6 +31,11 @@ Rota: http://127.0.0.1:3000/v1/user/:id
 
 </details>
 <details>
+<summary>Get</summary>
+Rota: http://127.0.0.1:3000/v1/user
+
+</details>
+<details>
 <summary>Create</summary>
 Rota: http://127.0.0.1:3000/v1/user
 requer JWT
@@ -74,15 +79,7 @@ Rota: http://127.0.0.1:3000/v1/user/:id
 requer JWT
 
 </details>
-<details>
-<summary>Get</summary>
-Rota: http://127.0.0.1:3000/v1/user
 
-requer JWT
-
-
-
-</details>
 
 
 
@@ -92,10 +89,6 @@ requer JWT
 <details>
 <summary>Get</summary>
 Rota: http://127.0.0.1:3000/v1/category/search
-</details>
-<details>
-<summary>Find</summary>
-Rota: http://127.0.0.1:3000/v1/category/:id
 </details>
 <details>
 <summary>Create</summary>
