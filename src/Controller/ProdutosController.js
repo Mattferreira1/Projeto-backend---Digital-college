@@ -97,8 +97,8 @@ class ProdutosController{
           } 
 
           return response.status(200).json({
-            currentPage: page,
-            itemsPerPage: limit === -1 ? "Total" : limit,
+            page: page,
+            limit: limit === -1 ? "Total" : limit,
             data: produtos,
           });
         } catch (error) {

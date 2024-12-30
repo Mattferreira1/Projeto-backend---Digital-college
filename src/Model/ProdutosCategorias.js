@@ -24,7 +24,7 @@ ProdutosCategorias.init(
             model:CategoriasModel,
             key: "id"
         },
-        onDelete:"CASCADE"
+
     },
   },
   {
