@@ -8,4 +8,14 @@ const connection = new Sequelize({
     password: "root",
     port:3306
 })
+connection.authenticate()
+.then(()=>{
+    console.log("conectou com o banco de dados")
+})
+.catch(erro=>{
+    console.log("erro ao se conectar com o banco de dados");
+    console.log(erro);
+
+    
+})
 module.exports = connection
