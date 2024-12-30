@@ -36,6 +36,7 @@ RotasPublicas.get("/v1/user/:id", userController.listarId)
 
 RotasPublicas.get("/v1/product/search", produtosController.listar)
 RotasPublicas.get("/v1/product/:id", produtosController.listarId)
+
 // RotasPublicas.post("/v1/product", produtosController.criar)
 // RotasPublicas.put("/v1/product/:id", produtosController.atualizar)
 // RotasPublicas.delete("/v1/product/:id", produtosController.excluir)

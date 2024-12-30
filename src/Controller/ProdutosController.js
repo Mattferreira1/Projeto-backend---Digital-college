@@ -24,6 +24,7 @@ class ProdutosController{
                 {
                     model: CategoriasModel,
                     through: { attributes: [] },
+                    attributes: ["id"],
                 },
                 {
                     model: ProdutosImageModel,
