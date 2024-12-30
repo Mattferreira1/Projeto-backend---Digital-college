@@ -1,5 +1,7 @@
 # Projeto-backend---Digital-college
 
+- Antes de iniciar o server, crie uma database com o nome "Backend" e o host "127.0.0.1"
+
 - Para resetar as tabelas, digite "node src/config/syncforce.js" no terminal
 
 - Para iniciar o server e criar as tabelas, digite "npm start" no terminal
