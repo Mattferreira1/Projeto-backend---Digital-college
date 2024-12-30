@@ -1,4 +1,9 @@
 # Projeto-backend---Digital-college
+
+- Para criar e/ou resetar as tabelas, digite "node src/config/syncforce.js" no terminal
+
+- Para iniciar o server, diggite "npm start" no terminal
+
 # Rota para pegar a chave jwt 
 - http://127.0.0.1:3000/v1/user/token
 
