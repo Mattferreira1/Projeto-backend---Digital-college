@@ -78,7 +78,8 @@ class CategoriaController{
             message: "Categoria deletada com sucesso"
         })
     }catch(e){
-        return response.json(e)
+        console.log(e)
+        return response.json("Impossivel excluir essa categoria, tem um produto relacionado. Tente excluir o produto antes")
     }
 }   
 }
