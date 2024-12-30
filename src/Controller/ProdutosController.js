@@ -12,6 +12,11 @@ class ProdutosController{
         ProdutosModel.belongsToMany(CategoriasModel, {through: ProdutosCategorias,foreignKey: 'product_id',otherKey: 'category_id',});
         ProdutosModel.hasMany(ProdutosOpcoesModel, {foreignKey: "product_id"});
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const data = await ProdutosModel.findOne({
             where:{
                 id: id
@@ -90,7 +95,7 @@ class ProdutosController{
             });
           } 
 
-          return response.json({
+          return response.status(200).json({
             currentPage: page,
             itemsPerPage: limit === -1 ? "Total" : limit,
             data: produtos,
@@ -109,7 +114,13 @@ class ProdutosController{
         
         try {
             const {options, images, ...body } = request.body;      
-            
+
+            if(!body){
+                return response.status(400).json({
+                    message: "produto inexistente ou inválido"
+                })
+            }
+
             const product = await ProdutosModel.create(body,{
                 include:{
                     through: ProdutosCategorias,
@@ -156,6 +167,11 @@ class ProdutosController{
 
     async atualizar(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const body = request.body
         const data = await ProdutosModel.findOne({
             where:{
@@ -185,6 +201,11 @@ class ProdutosController{
 
     async excluir(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const data = await ProdutosModel.findOne({
             where:{
                 id: id

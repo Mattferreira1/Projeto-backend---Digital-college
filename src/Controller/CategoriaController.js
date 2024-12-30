@@ -6,6 +6,11 @@ class CategoriaController{
     }
     async criar(request, response){
         const body = request.body
+        if(!body){
+            return response.status(400).json({
+                "message":"Categoria inexistente ou inválida"
+            })
+        }
         await CategoriasModel.create(body)
         return response.status(201).json({
             "message":"Categoria adicionada com sucesso"
@@ -14,6 +19,11 @@ class CategoriaController{
 
     async atualizar(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const body = request.body
         const data = await CategoriasModel.findOne({
             where:{
@@ -44,12 +54,17 @@ class CategoriaController{
     async excluir(request, response){
         try{
             const id = request.params.id
-        const user = await CategoriasModel.findOne({
+            if(!id){
+                return response.status(400).json({
+                    message: "Adicionar o id"
+                })   
+            }
+        const category = await CategoriasModel.findOne({
             where:{
                 id: id
             }
         })
-        if(!user){
+        if(!category){
             return response.status(404).json({
                 message: "Not found"
             })

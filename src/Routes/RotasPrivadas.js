@@ -26,6 +26,11 @@ RotasPrivadas.use((request, response, next)=>{
             
             jwt.verify(token, process.env.KEY_TOKEN)
             auth = true
+            if(auth = false){
+                return response.status(401).json({
+                    message: "token inválido"
+                })
+            }
             
             next()
         }catch(e){

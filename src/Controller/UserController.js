@@ -24,6 +24,11 @@ class UserController{
 
     async listarId(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const data = await UserModel.findOne({
             where:{
                 id: id
@@ -74,6 +79,11 @@ class UserController{
 
     async atualizar(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const body = request.body
         const data = await UserModel.findOne({
             where:{
@@ -103,6 +113,11 @@ class UserController{
 
     async excluir(request, response){
         const id = request.params.id
+        if(!id){
+            return response.status(400).json({
+                message: "Adicionar o id"
+            })   
+        }
         const user = await UserModel.findOne({
             where:{
                 id: id
